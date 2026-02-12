@@ -1,0 +1,55 @@
+---
+const features = [
+  {
+    title: "HD Video Calls",
+    description: "Crystal-clear video and audio quality for seamless communication.",
+    icon: "🎥"
+  },
+  {
+    title: "Real-time Collaboration",
+    description: "Work together on projects with instant updates and synchronization.",
+    icon: "⚡"
+  },
+  {
+    title: "Channel-based Communication",
+    description: "Organize conversations by topic, team, or project with dedicated channels.",
+    icon: "💬"
+  },
+  {
+    title: "Screen Sharing",
+    description: "Share your screen with team members for presentations and demos.",
+    icon: "🖥️"
+  },
+  {
+    title: "Custom Organizations",
+    description: "Create and manage multiple organizations with granular permissions.",
+    icon: "🏢"
+  },
+  {
+    title: "Modern Interface",
+    description: "Beautiful, intuitive design that makes remote work a pleasure.",
+    icon: "✨"
+  }
+];
+---
+
+<section id="features" class="py-20 px-4 bg-gray-800">
+  <div class="max-w-6xl mx-auto">
+    <h2 class="text-4xl md:text-5xl font-bold text-center mb-4">
+      Everything You Need
+    </h2>
+    <p class="text-xl text-gray-400 text-center mb-16 max-w-2xl mx-auto">
+      Powerful features designed for modern teams
+    </p>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {features.map((feature) => (
+        <div class="bg-gray-900 p-8 rounded-lg border border-gray-700 hover:border-purple-500 transition-colors duration-200">
+          <div class="text-4xl mb-4">{feature.icon}</div>
+          <h3 class="text-2xl font-semibold mb-3">{feature.title}</h3>
+          <p class="text-gray-400">{feature.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
