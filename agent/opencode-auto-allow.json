@@ -1,0 +1,38 @@
+{
+  "version": 1,
+  "rules": [
+    {
+      "tool": "read_file",
+      "action": "allow",
+      "conditions": {
+        "path_pattern": ".*"
+      }
+    },
+    {
+      "tool": "write_to_file",
+      "action": "allow",
+      "conditions": {
+        "path_pattern": ".*"
+      }
+    },
+    {
+      "tool": "list_files",
+      "action": "allow"
+    },
+    {
+      "tool": "list_code_definition_names",
+      "action": "allow"
+    },
+    {
+      "tool": "search_files",
+      "action": "allow"
+    },
+    {
+      "tool": "bash",
+      "action": "allow",
+      "conditions": {
+        "command_pattern": "^(npm|bun|node|npx|git|echo|cat|ls|grep|find|wc|head|tail|sed|awk|jq|mkdir|rm|mv|cp|touch|chmod|diff|tree).*"
+      }
+    }
+  ]
+}
