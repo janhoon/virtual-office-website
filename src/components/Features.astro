@@ -1,55 +1,131 @@
 ---
 const features = [
   {
-    title: "HD Video Calls",
-    description: "Crystal-clear video and audio quality for seamless communication.",
-    icon: "🎥"
+    title: 'Structured Text Channels',
+    description: 'Keep work organized by team, project, or function with channel-based messaging and searchable history.',
+    badge: 'TEXT'
   },
   {
-    title: "Real-time Collaboration",
-    description: "Work together on projects with instant updates and synchronization.",
-    icon: "⚡"
+    title: 'Drop-In Voice Channels',
+    description: 'Move into live conversation in seconds, then leave when done. No formal meetings required.',
+    badge: 'VOICE'
   },
   {
-    title: "Channel-based Communication",
-    description: "Organize conversations by topic, team, or project with dedicated channels.",
-    icon: "💬"
+    title: 'Organization Isolation',
+    description: 'Each company has its own workspace boundary so teams communicate without cross-company data exposure.',
+    badge: 'PRIVACY'
   },
   {
-    title: "Screen Sharing",
-    description: "Share your screen with team members for presentations and demos.",
-    icon: "🖥️"
+    title: 'Presence Awareness',
+    description: 'See who is online, who is currently in voice, and who is speaking so people can collaborate naturally.',
+    badge: 'PRESENCE'
   },
   {
-    title: "Custom Organizations",
-    description: "Create and manage multiple organizations with granular permissions.",
-    icon: "🏢"
+    title: 'Enterprise Membership Controls',
+    description: 'Create organizations, set roles, and onboard members with invite links built for managed teams.',
+    badge: 'ADMIN'
   },
   {
-    title: "Modern Interface",
-    description: "Beautiful, intuitive design that makes remote work a pleasure.",
-    icon: "✨"
+    title: 'Fast, Familiar UX',
+    description: 'The ease of modern team chat with the immediacy of voice rooms, without the learning curve.',
+    badge: 'UX'
+  }
+];
+
+const workflow = [
+  {
+    title: 'Start async in text',
+    detail: 'Teams begin in dedicated channels where updates, decisions, and context remain persistent.'
+  },
+  {
+    title: 'Escalate to voice in one click',
+    detail: 'When typing is slow, teammates jump into a voice room instantly and pull in the right people.'
+  },
+  {
+    title: 'Return with decisions captured',
+    detail: 'After live discussion, the team posts outcomes back to text so work stays searchable and accountable.'
   }
 ];
 ---
 
-<section id="features" class="py-20 px-4 bg-gray-800">
-  <div class="max-w-6xl mx-auto">
-    <h2 class="text-4xl md:text-5xl font-bold text-center mb-4">
-      Everything You Need
-    </h2>
-    <p class="text-xl text-gray-400 text-center mb-16 max-w-2xl mx-auto">
-      Powerful features designed for modern teams
-    </p>
-    
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<section id="features" class="section">
+  <div class="shell">
+    <div class="section-heading reveal">
+      <p class="eyebrow">Why this category exists</p>
+      <h2>Remote teams should not have to choose between communication speed and enterprise control.</h2>
+      <p>
+        Slack excels at structured chat. Discord excels at always-available voice. Virtual Office combines those strengths for companies that care about privacy, governance, and daily collaboration speed.
+      </p>
+    </div>
+
+    <div class="feature-grid">
       {features.map((feature) => (
-        <div class="bg-gray-900 p-8 rounded-lg border border-gray-700 hover:border-purple-500 transition-colors duration-200">
-          <div class="text-4xl mb-4">{feature.icon}</div>
-          <h3 class="text-2xl font-semibold mb-3">{feature.title}</h3>
-          <p class="text-gray-400">{feature.description}</p>
-        </div>
+        <article class="feature-card reveal">
+          <p class="feature-badge">{feature.badge}</p>
+          <h3>{feature.title}</h3>
+          <p>{feature.description}</p>
+        </article>
       ))}
+    </div>
+
+    <div class="workflow reveal" aria-label="How teams work in Virtual Office">
+      <h3>How teams use it in practice</h3>
+      <ol>
+        {workflow.map((step) => (
+          <li>
+            <p>{step.title}</p>
+            <span>{step.detail}</span>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <div class="comparison reveal" id="compare">
+      <h3>Positioning in one view</h3>
+      <div class="comparison-table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Capability</th>
+              <th>Slack</th>
+              <th>Discord</th>
+              <th>Virtual Office</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Organized text communication</td>
+              <td>Strong</td>
+              <td>Moderate</td>
+              <td>Strong</td>
+            </tr>
+            <tr>
+              <td>Drop-in voice collaboration</td>
+              <td>Limited</td>
+              <td>Strong</td>
+              <td>Strong</td>
+            </tr>
+            <tr>
+              <td>Enterprise org boundaries</td>
+              <td>Strong</td>
+              <td>Limited</td>
+              <td>Strong</td>
+            </tr>
+            <tr>
+              <td>Live presence and speaking status</td>
+              <td>Basic</td>
+              <td>Strong</td>
+              <td>Strong</td>
+            </tr>
+            <tr>
+              <td>Private company workspace model</td>
+              <td>Strong</td>
+              <td>Limited</td>
+              <td>Strong</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </section>

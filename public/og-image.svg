@@ -1,0 +1,16 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#101013" />
+  <circle cx="962" cy="130" r="240" fill="#F59E0B" fill-opacity="0.16" />
+  <circle cx="200" cy="40" r="220" fill="#38BDF8" fill-opacity="0.12" />
+  <rect x="80" y="96" width="1040" height="438" rx="24" fill="#171922" stroke="rgba(255,255,255,0.18)" />
+  <text x="130" y="192" fill="#FBBF24" font-family="JetBrains Mono, monospace" font-size="28" letter-spacing="4">VIRTUAL OFFICE</text>
+  <text x="130" y="286" fill="#F7F8FB" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="68" font-weight="700">
+    Enterprise chat and
+  </text>
+  <text x="130" y="360" fill="#F7F8FB" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="68" font-weight="700">
+    drop-in voice, together.
+  </text>
+  <text x="130" y="430" fill="#C3C8D5" font-family="'Plus Jakarta Sans', Arial, sans-serif" font-size="30">
+    Slack-like text structure. Discord-like voice flow. Private by organization.
+  </text>
+</svg>

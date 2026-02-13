@@ -1,0 +1,42 @@
+---
+const faqs = [
+  {
+    question: 'Who is Virtual Office built for?',
+    answer: 'Virtual Office is designed for enterprises and established companies running distributed teams that need both structured text communication and instant voice collaboration.'
+  },
+  {
+    question: 'How is this different from Slack or Discord?',
+    answer: 'Slack is great for messaging and process workflows, while Discord is excellent for fluid voice rooms. Virtual Office blends both experiences inside an organization-first workspace model.'
+  },
+  {
+    question: 'Does each company get a private workspace boundary?',
+    answer: 'Yes. The product is built around organization-level isolation so each company operates in its own workspace context.'
+  },
+  {
+    question: 'Can teams onboard quickly?',
+    answer: 'Yes. Teams can create organizations, define channels, assign member roles, and bring people in through invite links and invitations.'
+  },
+  {
+    question: 'What is available right now?',
+    answer: 'The live app already includes text channels, call channels, presence indicators, real-time messaging, and organization management. The current site is collecting pilot teams for launch feedback.'
+  }
+];
+---
+
+<section class="section" id="faq">
+  <div class="shell">
+    <div class="section-heading reveal">
+      <p class="eyebrow">FAQ</p>
+      <h2>Questions from IT and operations teams</h2>
+    </div>
+
+    <div class="faq-list">
+      {faqs.map((item) => (
+        <details class="faq-item reveal">
+          <summary>{item.question}</summary>
+          <p>{item.answer}</p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>

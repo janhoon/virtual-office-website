@@ -4,9 +4,17 @@ import '../styles/global.css';
 interface Props {
 	title: string;
 	description: string;
+	canonical?: string;
+	keywords?: string;
+	ogImage?: string;
+	schema?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const { title, description } = Astro.props;
+const { title, description, canonical, keywords, ogImage = '/og-image.svg', schema } = Astro.props;
+const siteName = 'Virtual Office';
+const canonicalUrl = canonical ?? Astro.url.toString();
+const ogImageUrl = new URL(ogImage, Astro.url).toString();
+const schemaContent = schema ? JSON.stringify(schema) : null;
 ---
 
 <!doctype html>
@@ -14,12 +22,34 @@ const { title, description } = Astro.props;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
+		<meta name="keywords" content={keywords ?? 'virtual office, enterprise team chat, remote team communication, drop-in voice channels, private team messaging, slack alternative, discord alternative for business'} />
 		<meta name="viewport" content="width=device-width" />
+		<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
+		<meta name="theme-color" content="#101013" />
+		<meta name="author" content="Virtual Office" />
+		<link rel="canonical" href={canonicalUrl} />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:site_name" content={siteName} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:url" content={canonicalUrl} />
+		<meta property="og:image" content={ogImageUrl} />
+
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		<meta name="twitter:image" content={ogImageUrl} />
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
+		{schemaContent && <script type="application/ld+json" set:html={schemaContent} />}
 	</head>
-	<body class="bg-gray-900 text-gray-100">
+	<body>
 		<slot />
 	</body>
 </html>

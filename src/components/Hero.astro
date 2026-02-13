@@ -1,21 +1,81 @@
 ---
 ---
 
-<section class="min-h-screen flex items-center justify-center px-4 py-20 bg-gradient-to-br from-gray-900 via-purple-900 to-gray-900">
-  <div class="max-w-5xl mx-auto text-center">
-    <h1 class="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-purple-400 to-pink-600">
-      Virtual Office
-    </h1>
-    <p class="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-      The future of remote collaboration. Connect, communicate, and create together in real-time.
-    </p>
-    <p class="text-lg text-gray-400 mb-12">
-      Experience seamless video calls, instant messaging, and team collaboration—all in one beautiful platform.
-    </p>
-    <div class="flex justify-center">
-      <a href="#waitlist" class="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8 py-4 rounded-lg text-lg transition-colors duration-200 shadow-lg hover:shadow-purple-500/50">
-        Join the Waitlist
-      </a>
+<header class="site-header">
+  <div class="shell header-inner">
+    <a href="/" class="brand-mark">Virtual Office</a>
+    <nav class="top-nav" aria-label="Primary">
+      <a href="#features">Features</a>
+      <a href="#compare">Slack vs Discord vs VO</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <p class="header-note">Enterprise remote communication, rethought</p>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="shell hero-grid">
+    <div class="hero-copy reveal">
+      <p class="eyebrow">Built for enterprise remote teams</p>
+      <h1>
+        The virtual office where Slack-style chat and Discord-style voice finally work together.
+      </h1>
+      <p class="hero-lead">
+        Virtual Office is designed for companies that need quick, drop-in voice collaboration without giving up structured text channels, admin controls, and organization-level privacy.
+      </p>
+      <form class="hero-waitlist" data-waitlist-form>
+        <input
+          type="email"
+          name="email"
+          placeholder="Work email"
+          required
+          autocomplete="email"
+          aria-label="Work email"
+          class="waitlist-input"
+          data-waitlist-email
+        />
+        <button type="submit" class="button button-primary">Join Waitlist</button>
+      </form>
+      <p class="waitlist-message hero-waitlist-message" aria-live="polite" data-waitlist-message></p>
+      <p class="hero-meta">Pilot enrollment is currently open for selected teams.</p>
+      <ul class="trust-chips" aria-label="Key capabilities">
+        <li>Org-isolated workspaces</li>
+        <li>Text and voice channels</li>
+        <li>Presence + speaking indicators</li>
+        <li>Invite links and role-based access</li>
+      </ul>
     </div>
+
+    <aside class="workspace-preview reveal" aria-label="Virtual Office interface preview">
+      <p class="preview-title">Workspace Snapshot</p>
+      <div class="preview-window">
+        <div class="preview-sidebar">
+          <p class="preview-label">Channels</p>
+          <ul>
+            <li># executive-updates</li>
+            <li># product-decisions</li>
+            <li># support</li>
+          </ul>
+          <p class="preview-label">Voice Rooms</p>
+          <ul>
+            <li>Operations Floor</li>
+            <li>Leadership Standup</li>
+          </ul>
+        </div>
+        <div class="preview-main">
+          <p class="preview-meta">Now active in Operations Floor</p>
+          <h2>Drop in. Talk. Drop out.</h2>
+          <div class="participants">
+            <span class="participant in-call">AC</span>
+            <span class="participant in-call">MJ</span>
+            <span class="participant">KP</span>
+            <span class="participant">TL</span>
+          </div>
+          <p class="preview-note">
+            Teams move from async messages to live voice in one click without switching tools.
+          </p>
+        </div>
+      </div>
+    </aside>
   </div>
 </section>

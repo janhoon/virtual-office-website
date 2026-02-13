@@ -1,0 +1,27 @@
+# Virtual Office
+
+> Virtual Office is an enterprise-focused communication platform that combines structured team messaging with drop-in voice channels for distributed companies.
+
+## Product Positioning
+- Built for enterprises and established companies modernizing remote collaboration.
+- Solves the gap between Slack-style text coordination and Discord-style instant voice communication.
+- Prioritizes organization-level privacy and controlled team access.
+
+## Core Capabilities
+- Text channels for organized, persistent team communication.
+- Call channels for instant in-and-out voice collaboration.
+- Presence and speaking indicators for live coordination.
+- Organization boundaries with invite links and role-aware membership model.
+
+## Primary Audience
+- Operations, IT, and leadership teams at medium and large companies.
+- Hybrid and remote-first organizations needing faster internal communication loops.
+- Teams that need private company workspaces rather than public community-oriented chat tools.
+
+## Canonical URLs
+- Website: https://virtual-office-dev.janhoon.com/
+- Live Application: https://virtual-office-dev.janhoon.com/
+- Source Repository: https://github.com/janhoon/virtual-office
+
+## Contact
+- Email: hello@virtualoffice.io

@@ -1,71 +1,84 @@
 ---
 ---
 
-<section id="waitlist" class="py-20 px-4 bg-gradient-to-br from-purple-900 via-gray-900 to-gray-900">
-  <div class="max-w-2xl mx-auto text-center">
-    <h2 class="text-4xl md:text-5xl font-bold mb-4">
-      Be the First to Know
-    </h2>
-    <p class="text-xl text-gray-300 mb-12">
-      Join our waitlist and get early access when we launch.
-    </p>
-    
-    <form id="waitlist-form" class="max-w-md mx-auto">
-      <div class="flex flex-col sm:flex-row gap-4">
+<section id="waitlist" class="section">
+  <div class="shell">
+    <div class="waitlist-card reveal">
+      <p class="eyebrow">Pilot Program</p>
+      <h2>Join the early access list for enterprise remote communication teams.</h2>
+      <p>
+        We are onboarding a limited number of companies to validate real-world workflows, channel structures, and voice collaboration patterns. Leave your work email to get priority access.
+      </p>
+
+      <form class="waitlist-form" data-waitlist-form>
         <input
           type="email"
-          id="email"
           name="email"
-          placeholder="Enter your email"
+          placeholder="Work email"
           required
-          class="flex-1 px-6 py-4 rounded-lg bg-gray-800 border border-gray-700 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500 text-white placeholder-gray-400"
+          autocomplete="email"
+          class="waitlist-input"
+          data-waitlist-email
         />
         <button
           type="submit"
-          class="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8 py-4 rounded-lg transition-colors duration-200 whitespace-nowrap"
+          class="button button-primary"
         >
           Join Waitlist
         </button>
-      </div>
-      <p id="form-message" class="mt-4 text-sm"></p>
-    </form>
+      </form>
+      <p class="waitlist-footnote">No spam. We only send product updates and pilot invites.</p>
+      <p class="waitlist-message" aria-live="polite" data-waitlist-message></p>
+    </div>
   </div>
 </section>
 
 <script>
-  const form = document.getElementById('waitlist-form') as HTMLFormElement;
-  const message = document.getElementById('form-message') as HTMLParagraphElement;
-  const emailInput = document.getElementById('email') as HTMLInputElement;
+  const forms = document.querySelectorAll('[data-waitlist-form]');
 
-  form?.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    
-    const email = emailInput.value;
-    message.textContent = 'Submitting...';
-    message.className = 'mt-4 text-sm text-gray-400';
-
-    try {
-      const response = await fetch('/api/waitlist', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        message.textContent = '✓ Thanks! You\'re on the waitlist. Check your email for confirmation.';
-        message.className = 'mt-4 text-sm text-green-400';
-        emailInput.value = '';
-      } else {
-        message.textContent = data.error || 'Something went wrong. Please try again.';
-        message.className = 'mt-4 text-sm text-red-400';
-      }
-    } catch (error) {
-      message.textContent = 'Network error. Please try again.';
-      message.className = 'mt-4 text-sm text-red-400';
+  forms.forEach((element) => {
+    if (!(element instanceof HTMLFormElement)) {
+      return;
     }
+
+    const form = element;
+    const emailInput = form.querySelector('[data-waitlist-email]') as HTMLInputElement | null;
+    const message = form.parentElement?.querySelector('[data-waitlist-message]') as HTMLParagraphElement | null;
+
+    if (!emailInput || !message) {
+      return;
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const email = emailInput.value.trim();
+      message.textContent = 'Submitting...';
+      message.className = 'waitlist-message waitlist-message-pending';
+
+      try {
+        const response = await fetch('/api/waitlist', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ email }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          message.textContent = "Thanks. You're on the early access list.";
+          message.className = 'waitlist-message waitlist-message-success';
+          emailInput.value = '';
+        } else {
+          message.textContent = data.error || 'Something went wrong. Please try again.';
+          message.className = 'waitlist-message waitlist-message-error';
+        }
+      } catch (error) {
+        message.textContent = 'Network error. Please try again.';
+        message.className = 'waitlist-message waitlist-message-error';
+      }
+    });
   });
 </script>

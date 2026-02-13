@@ -2,17 +2,82 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Features from '../components/Features.astro';
+import Faq from '../components/Faq.astro';
 import Waitlist from '../components/Waitlist.astro';
 import Footer from '../components/Footer.astro';
+
+const title = 'Virtual Office | Enterprise Text + Drop-In Voice for Remote Teams';
+const description = 'Virtual Office combines Slack-style channel messaging with Discord-style drop-in voice, built for enterprises that need private organization boundaries and fast collaboration.';
+const canonical = 'https://virtual-office-dev.janhoon.com/';
+const keywords = 'enterprise communication platform, remote team collaboration software, slack discord alternative, private company chat with voice, drop-in voice channels for business';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'SoftwareApplication',
+      name: 'Virtual Office',
+      applicationCategory: 'BusinessApplication',
+      operatingSystem: 'Web',
+      url: canonical,
+      description,
+      offers: {
+        '@type': 'Offer',
+        price: '0',
+        priceCurrency: 'USD'
+      },
+      featureList: [
+        'Organization-isolated workspaces',
+        'Text and call channels',
+        'Real-time team messaging',
+        'Presence and speaking indicators',
+        'Invite links and member roles'
+      ]
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: [
+        {
+          '@type': 'Question',
+          name: 'Who is Virtual Office built for?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Virtual Office is built for enterprises and established companies with distributed teams that need both structured text and instant voice communication.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'How is this different from Slack or Discord?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Virtual Office combines Slack-like text organization with Discord-like drop-in voice while keeping enterprise workspace boundaries and team management in one product.'
+          }
+        },
+        {
+          '@type': 'Question',
+          name: 'Does this support organization-level privacy?',
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: 'Yes. Virtual Office uses organization-level workspace isolation so each company collaborates inside its own private context.'
+          }
+        }
+      ]
+    }
+  ]
+};
 ---
 
 <Layout 
-  title="Virtual Office - The Future of Remote Collaboration"
-  description="Experience seamless video calls, instant messaging, and team collaboration in one beautiful platform. Join the waitlist today."
+  title={title}
+  description={description}
+  canonical={canonical}
+  keywords={keywords}
+  schema={schema}
 >
   <main>
     <Hero />
     <Features />
+    <Faq />
     <Waitlist />
     <Footer />
   </main>
