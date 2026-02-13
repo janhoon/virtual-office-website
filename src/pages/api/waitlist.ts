@@ -12,7 +12,7 @@ export const POST: APIRoute = async ({ request }) => {
     }
 
     // Forward to Cloudflare Worker backend
-    const workerUrl = import.meta.env.WAITLIST_API_URL || 'https://waitlist.virtualoffice.io/api/subscribe';
+    const workerUrl = import.meta.env.WAITLIST_API_URL || 'https://waitlist.getspeke.com/api/subscribe';
     
     const response = await fetch(workerUrl, {
       method: 'POST',

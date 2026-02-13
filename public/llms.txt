@@ -1,6 +1,6 @@
-# Virtual Office
+# Speke
 
-> Virtual Office is an enterprise-focused communication platform that combines structured team messaging with drop-in voice channels for distributed companies.
+> Speke is an enterprise-focused communication platform that combines structured team messaging with drop-in voice channels for distributed companies.
 
 ## Product Positioning
 - Built for enterprises and established companies modernizing remote collaboration.
@@ -21,7 +21,7 @@
 ## Canonical URLs
 - Website: https://virtual-office-dev.janhoon.com/
 - Live Application: https://virtual-office-dev.janhoon.com/
-- Source Repository: https://github.com/janhoon/virtual-office
+- Source Repository: https://github.com/janhoon/speke-website
 
 ## Contact
-- Email: hello@virtualoffice.io
+- Email: hello@getspeke.com

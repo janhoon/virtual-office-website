@@ -11,7 +11,7 @@ interface Props {
 }
 
 const { title, description, canonical, keywords, ogImage = '/og-image.svg', schema } = Astro.props;
-const siteName = 'Virtual Office';
+const siteName = 'Speke';
 const canonicalUrl = canonical ?? Astro.url.toString();
 const ogImageUrl = new URL(ogImage, Astro.url).toString();
 const schemaContent = schema ? JSON.stringify(schema) : null;
@@ -22,11 +22,11 @@ const schemaContent = schema ? JSON.stringify(schema) : null;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
-		<meta name="keywords" content={keywords ?? 'virtual office, enterprise team chat, remote team communication, drop-in voice channels, private team messaging, slack alternative, discord alternative for business'} />
+		<meta name="keywords" content={keywords ?? 'speke, enterprise team chat, remote team communication, drop-in voice channels, private team messaging, slack alternative, discord alternative for business'} />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
 		<meta name="theme-color" content="#101013" />
-		<meta name="author" content="Virtual Office" />
+		<meta name="author" content="Speke" />
 		<link rel="canonical" href={canonicalUrl} />
 
 		<meta property="og:type" content="website" />

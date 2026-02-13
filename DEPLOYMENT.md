@@ -15,17 +15,17 @@ cd worker
 export CLOUDFLARE_API_TOKEN="your-api-token-here"
 
 # Create D1 database
-wrangler d1 create virtual-office-waitlist
+wrangler d1 create speke-waitlist
 ```
 
 This will output something like:
 ```
-✅ Successfully created DB 'virtual-office-waitlist' in region WEUR
+✅ Successfully created DB 'speke-waitlist' in region WEUR
 Created your database using D1's new storage backend. The new storage backend is not yet recommended for production workloads, but backs up your data via point-in-time restore.
 
 [[d1_databases]]
 binding = "DB"
-database_name = "virtual-office-waitlist"
+database_name = "speke-waitlist"
 database_id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 ```
 
@@ -33,13 +33,13 @@ database_id = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 
 ```bash
 # Initialize the database with schema
-wrangler d1 execute virtual-office-waitlist --file=schema.sql
+wrangler d1 execute speke-waitlist --file=schema.sql
 
 # Deploy the worker
 wrangler deploy
 ```
 
-Note the worker URL from the output (e.g., `https://virtual-office-waitlist.your-subdomain.workers.dev`)
+Note the worker URL from the output (e.g., `https://speke-waitlist.your-subdomain.workers.dev`)
 
 ## Step 2: Deploy the Website
 
@@ -52,23 +52,23 @@ npm run build
 
 # Deploy to Cloudflare Pages
 export CLOUDFLARE_API_TOKEN="your-api-token-here"
-wrangler pages deploy dist --project-name=virtual-office-website
+wrangler pages deploy dist --project-name=speke-website
 ```
 
 ## Step 3: Configure Custom Domain
 
-1. Go to Cloudflare Dashboard → Pages → virtual-office-website
+1. Go to Cloudflare Dashboard → Pages → speke-website
 2. Go to Custom domains → Add custom domain
-3. Add your domain (e.g., `virtualoffice.io`, `www.virtualoffice.io`)
+3. Add your domain (e.g., `getspeke.com`, `www.getspeke.com`)
 4. Cloudflare will automatically configure DNS
 
 ## Step 4: Set Environment Variables
 
-In Cloudflare Dashboard → Pages → virtual-office-website → Settings → Environment variables:
+In Cloudflare Dashboard → Pages → speke-website → Settings → Environment variables:
 
 Add:
 - **Name**: `WAITLIST_API_URL`
-- **Value**: `https://virtual-office-waitlist.your-subdomain.workers.dev/api/subscribe`
+- **Value**: `https://speke-waitlist.your-subdomain.workers.dev/api/subscribe`
 
 Or use your custom domain if you set one up for the worker.
 
@@ -95,11 +95,11 @@ curl https://your-worker-url.workers.dev/api/list
 
 ```bash
 # View all subscribers
-wrangler d1 execute virtual-office-waitlist --command="SELECT * FROM waitlist ORDER BY subscribed_at DESC"
+wrangler d1 execute speke-waitlist --command="SELECT * FROM waitlist ORDER BY subscribed_at DESC"
 
 # Count subscribers
-wrangler d1 execute virtual-office-waitlist --command="SELECT COUNT(*) as total FROM waitlist"
+wrangler d1 execute speke-waitlist --command="SELECT COUNT(*) as total FROM waitlist"
 
 # Export to CSV
-wrangler d1 execute virtual-office-waitlist --command="SELECT email, subscribed_at FROM waitlist" --json > waitlist.json
+wrangler d1 execute speke-waitlist --command="SELECT email, subscribed_at FROM waitlist" --json > waitlist.json
 ```
