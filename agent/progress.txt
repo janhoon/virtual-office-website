@@ -1,8 +1,8 @@
-# Virtual Office Website - Progress Log
+# Speke Website - Progress Log
 
 ## Initial Setup (2026-02-12)
 - ✅ Created Astro project with Tailwind CSS
-- ✅ Deployed to Cloudflare Pages: https://virtual-office-website.pages.dev
+- ✅ Deployed to Cloudflare Pages: https://speke-website.pages.dev
 - ✅ Implemented landing page components:
   - Hero section with gradient background
   - Features showcase (6 features)
@@ -10,7 +10,7 @@
   - Footer with links
 - ✅ Created Cloudflare Worker for waitlist backend (ready to deploy)
 - ✅ Set up D1 database schema for email collection
-- ✅ GitHub repository: https://github.com/janhoon/virtual-office-website
+- ✅ GitHub repository: https://github.com/janhoon/speke-website
 
 ## Current State
 - Landing page is live and functional

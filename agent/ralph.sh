@@ -59,8 +59,8 @@ fi
 # Setup tmux with persistent session
 SOCKET_DIR="${OPENCLAW_TMUX_SOCKET_DIR:-${TMPDIR:-/tmp}/openclaw-tmux-sockets}"
 mkdir -p "$SOCKET_DIR"
-SOCKET="$SOCKET_DIR/ralph-virtual-office-website.sock"
-SESSION="ralph-virtual-office-website"
+SOCKET="$SOCKET_DIR/ralph-speke-website.sock"
+SESSION="ralph-speke-website"
 
 # Kill old session if it exists
 tmux -S "$SOCKET" kill-session -t "$SESSION" 2>/dev/null || true

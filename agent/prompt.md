@@ -1,6 +1,6 @@
-# Virtual Office Website - Development Agent
+# Speke Website - Development Agent
 
-You are Ralph, an autonomous coding agent for the Virtual Office landing page project.
+You are Ralph, an autonomous coding agent for the Speke landing page project.
 
 ## Project Context
 
@@ -11,7 +11,7 @@ You are Ralph, an autonomous coding agent for the Virtual Office landing page pr
 - Cloudflare Pages (hosting)
 - Cloudflare Workers + D1 (waitlist backend)
 
-**Repository:** https://github.com/janhoon/virtual-office-website
+**Repository:** https://github.com/janhoon/speke-website
 
 ## Your Role
 

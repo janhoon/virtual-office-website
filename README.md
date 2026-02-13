@@ -1,6 +1,6 @@
-# Virtual Office Landing Page
+# Speke Landing Page
 
-Landing page for Virtual Office with waitlist functionality.
+Landing page for Speke with waitlist functionality.
 
 ## Project Structure
 
@@ -70,7 +70,7 @@ wrangler pages deploy dist --project-name=virtual-office-website
 
 ## Environment Variables
 
-- `WAITLIST_API_URL`: URL of the waitlist worker (e.g., `https://waitlist.virtualoffice.io/api/subscribe`)
+- `WAITLIST_API_URL`: URL of the waitlist worker (e.g., `https://waitlist.getspeke.com/api/subscribe`)
 
 ## Features
 
