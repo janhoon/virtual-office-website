@@ -23,7 +23,7 @@
       <p class="hero-lead">
         Speke is designed for companies that need quick, drop-in voice collaboration without giving up structured text channels, admin controls, and organization-level privacy.
       </p>
-      <form class="hero-waitlist" data-waitlist-form>
+      <form class="hero-waitlist" data-waitlist-form data-waitlist-source="hero">
         <input
           type="email"
           name="email"
@@ -34,7 +34,16 @@
           class="waitlist-input"
           data-waitlist-email
         />
-        <button type="submit" class="button button-primary">Join Waitlist</button>
+        <button
+          type="submit"
+          class="button button-primary"
+          data-track-cta
+          data-cta-text="Join Waitlist"
+          data-cta-location="hero"
+          data-cta-url="#waitlist"
+        >
+          Join Waitlist
+        </button>
       </form>
       <p class="waitlist-message hero-waitlist-message" aria-live="polite" data-waitlist-message></p>
       <p class="hero-meta">Pilot enrollment is currently open for selected teams.</p>

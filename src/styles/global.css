@@ -340,6 +340,11 @@ a {
   margin: 1rem 0 0;
 }
 
+.section-cta {
+  margin-top: 1.2rem;
+  width: fit-content;
+}
+
 .feature-grid {
   margin-top: 2rem;
   display: grid;
@@ -570,6 +575,11 @@ a {
   color: var(--text-1);
   max-width: 46ch;
   font-size: 0.9rem;
+}
+
+.footer-cta {
+  margin-top: 1rem;
+  width: fit-content;
 }
 
 .footer-grid ul {

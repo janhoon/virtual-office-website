@@ -21,3 +21,13 @@
 - Deploy waitlist worker when D1 database is created
 - Add custom domain (virtualoffice.io)
 - Additional features per PRD
+
+## PostHog Integration (2026-02-14)
+- ✅ Installed `posthog-js` and initialized analytics globally from `Layout.astro`
+- ✅ Added CTA click tracking (`cta_clicked`) across hero, features, waitlist, and footer CTAs
+- ✅ Added waitlist funnel tracking for form views and submissions:
+  - `waitlist_form_viewed`
+  - `waitlist_signup` with success/failed status
+  - `waitlist_signup_success` and `waitlist_signup_failed`
+- ✅ Added PostHog env configuration docs and defaults (`.env.example`, `wrangler.toml`, README, DEPLOYMENT)
+- ✅ Verified with `npm run build`

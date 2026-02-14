@@ -1,3 +1,7 @@
 name = "speke-website"
 compatibility_date = "2024-01-01"
 pages_build_output_dir = "dist"
+
+[vars]
+PUBLIC_POSTHOG_API_KEY = "phc_SufADq1sXKA8eN4wSAMaAmIPwWVP3GR9mcPaE8xcJLW"
+PUBLIC_POSTHOG_HOST = "https://eu.i.posthog.com"

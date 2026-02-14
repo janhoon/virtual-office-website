@@ -69,6 +69,10 @@ In Cloudflare Dashboard → Pages → speke-website → Settings → Environment
 Add:
 - **Name**: `WAITLIST_API_URL`
 - **Value**: `https://speke-waitlist.your-subdomain.workers.dev/api/subscribe`
+- **Name**: `PUBLIC_POSTHOG_API_KEY`
+- **Value**: `phc_SufADq1sXKA8eN4wSAMaAmIPwWVP3GR9mcPaE8xcJLW`
+- **Name**: `PUBLIC_POSTHOG_HOST`
+- **Value**: `https://eu.i.posthog.com`
 
 Or use your custom domain if you set one up for the worker.
 
