@@ -70,6 +70,6 @@
       "Update progress.txt",
       "Commit: \"feat: integrate PostHog analytics in landing page (#253)\""
     ],
-    "passes": false
+    "passes": true
   }
 ]

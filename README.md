@@ -71,6 +71,10 @@ wrangler pages deploy dist --project-name=virtual-office-website
 ## Environment Variables
 
 - `WAITLIST_API_URL`: URL of the waitlist worker (e.g., `https://waitlist.getspeke.com/api/subscribe`)
+- `PUBLIC_POSTHOG_API_KEY`: PostHog project API key for website analytics
+- `PUBLIC_POSTHOG_HOST`: PostHog host URL (use `https://eu.i.posthog.com`)
+
+Copy `.env.example` to `.env` for local setup.
 
 ## Features
 

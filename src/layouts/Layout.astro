@@ -48,6 +48,12 @@ const schemaContent = schema ? JSON.stringify(schema) : null;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		{schemaContent && <script type="application/ld+json" set:html={schemaContent} />}
+		<script>
+			import { initPostHogAnalytics, registerCtaTracking } from '../scripts/analytics';
+
+			initPostHogAnalytics();
+			registerCtaTracking();
+		</script>
 	</head>
 	<body>
 		<slot />

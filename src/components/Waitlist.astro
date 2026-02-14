@@ -10,7 +10,7 @@
         We are onboarding a limited number of companies to validate real-world workflows, channel structures, and voice collaboration patterns. Leave your work email to get priority access.
       </p>
 
-      <form class="waitlist-form" data-waitlist-form>
+      <form class="waitlist-form" data-waitlist-form data-waitlist-source="waitlist_section">
         <input
           type="email"
           name="email"
@@ -23,6 +23,10 @@
         <button
           type="submit"
           class="button button-primary"
+          data-track-cta
+          data-cta-text="Join Waitlist"
+          data-cta-location="waitlist_section"
+          data-cta-url="#waitlist"
         >
           Join Waitlist
         </button>
@@ -34,7 +38,40 @@
 </section>
 
 <script>
+  import { capturePostHogEvent } from '../scripts/analytics';
+
   const forms = document.querySelectorAll('[data-waitlist-form]');
+  const viewedWaitlistForms = new Set<string>();
+
+  const trackFormViewed = (formLocation: string): void => {
+    if (viewedWaitlistForms.has(formLocation)) {
+      return;
+    }
+
+    viewedWaitlistForms.add(formLocation);
+    capturePostHogEvent('waitlist_form_viewed', {
+      source: 'landing_page',
+      form_location: formLocation,
+    });
+  };
+
+  const formViewObserver =
+    'IntersectionObserver' in window
+      ? new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (!entry.isIntersecting || !(entry.target instanceof HTMLFormElement)) {
+                return;
+              }
+
+              const formLocation = entry.target.dataset.waitlistSource ?? 'unknown';
+              trackFormViewed(formLocation);
+              formViewObserver?.unobserve(entry.target);
+            });
+          },
+          { threshold: 0.4 }
+        )
+      : null;
 
   forms.forEach((element) => {
     if (!(element instanceof HTMLFormElement)) {
@@ -42,6 +79,7 @@
     }
 
     const form = element;
+    const formLocation = form.dataset.waitlistSource ?? 'unknown';
     const emailInput = form.querySelector('[data-waitlist-email]') as HTMLInputElement | null;
     const message = form.parentElement?.querySelector('[data-waitlist-message]') as HTMLParagraphElement | null;
 
@@ -49,10 +87,22 @@
       return;
     }
 
+    if (formViewObserver) {
+      formViewObserver.observe(form);
+    } else {
+      trackFormViewed(formLocation);
+    }
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const email = emailInput.value.trim();
+      const eventProperties = {
+        email,
+        source: 'landing_page',
+        form_location: formLocation,
+      };
+
       message.textContent = 'Submitting...';
       message.className = 'waitlist-message waitlist-message-pending';
 
@@ -65,17 +115,44 @@
           body: JSON.stringify({ email }),
         });
 
-        const data = await response.json();
+        const data = (await response.json().catch(() => null)) as { error?: string } | null;
+        const errorMessage = data?.error || 'Something went wrong. Please try again.';
 
         if (response.ok) {
+          capturePostHogEvent('waitlist_signup', {
+            ...eventProperties,
+            status: 'success',
+          });
+          capturePostHogEvent('waitlist_signup_success', eventProperties);
+
           message.textContent = "Thanks. You're on the early access list.";
           message.className = 'waitlist-message waitlist-message-success';
           emailInput.value = '';
         } else {
-          message.textContent = data.error || 'Something went wrong. Please try again.';
+          capturePostHogEvent('waitlist_signup', {
+            ...eventProperties,
+            status: 'failed',
+            error: errorMessage,
+          });
+          capturePostHogEvent('waitlist_signup_failed', {
+            ...eventProperties,
+            error: errorMessage,
+          });
+
+          message.textContent = errorMessage;
           message.className = 'waitlist-message waitlist-message-error';
         }
       } catch (error) {
+        capturePostHogEvent('waitlist_signup', {
+          ...eventProperties,
+          status: 'failed',
+          error: 'network_error',
+        });
+        capturePostHogEvent('waitlist_signup_failed', {
+          ...eventProperties,
+          error: 'network_error',
+        });
+
         message.textContent = 'Network error. Please try again.';
         message.className = 'waitlist-message waitlist-message-error';
       }
