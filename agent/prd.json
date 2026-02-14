@@ -11,7 +11,7 @@
       "Update src/layouts/Layout.astro",
       "Add PostHog initialization script in <head>:",
       "- Host: https://eu.i.posthog.com",
-      "- API Key: TBD (create Speke Marketing project in PostHog)",
+      "- API Key: phc_SufADq1sXKA8eN4wSAMaAmIPwWVP3GR9mcPaE8xcJLW",
       "- Load posthog-js from CDN or bundle",
       "Initialize PostHog globally (window.posthog)",
       "",
