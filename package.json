@@ -10,10 +10,11 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.9.4",
+    "@astrojs/check": "^0.9.6",
     "@astrojs/cloudflare": "^12.2.1",
     "astro": "^5.1.4",
-    "typescript": "^5.7.3"
+    "posthog-js": "^1.347.2",
+    "typescript": "^5.9.3"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.0.2"
