@@ -86,3 +86,4 @@ Copy `.env.example` to `.env` for local setup.
 - ✅ Duplicate email prevention
 - ✅ Responsive design
 - ✅ SEO optimized
+# PostHog analytics enabled
