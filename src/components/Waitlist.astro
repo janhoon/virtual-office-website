@@ -31,12 +31,15 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '1x0000000
         >
           Join Waitlist
         </button>
-        <div class="turnstile-widget">
+        <div class="turnstile-widget" style="display:none">
           <div
             class="cf-turnstile"
             data-sitekey={turnstileSiteKey}
-            data-appearance="interaction-only"
+            data-size="invisible"
             data-action="waitlist_signup"
+            data-callback="onSpekeTurnstileSuccess"
+            data-error-callback="onSpekeTurnstileError"
+            data-expired-callback="onSpekeTurnstileExpired"
           ></div>
         </div>
       </form>
@@ -49,14 +52,28 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '1x0000000
 <script>
   import { capturePostHogEvent } from '../scripts/analytics';
 
+  // Token storage for Turnstile invisible mode.
+  // Global callbacks required by Turnstile's data-callback API.
+  let turnstileToken: string | null = null;
+  let turnstileError = false;
+
+  (window as unknown as Record<string, unknown>)['onSpekeTurnstileSuccess'] = (token: string) => {
+    turnstileToken = token;
+    turnstileError = false;
+  };
+  (window as unknown as Record<string, unknown>)['onSpekeTurnstileError'] = () => {
+    turnstileToken = null;
+    turnstileError = true;
+  };
+  (window as unknown as Record<string, unknown>)['onSpekeTurnstileExpired'] = () => {
+    turnstileToken = null;
+  };
+
   const forms = document.querySelectorAll('[data-waitlist-form]');
   const viewedWaitlistForms = new Set<string>();
 
   const trackFormViewed = (formLocation: string): void => {
-    if (viewedWaitlistForms.has(formLocation)) {
-      return;
-    }
-
+    if (viewedWaitlistForms.has(formLocation)) return;
     viewedWaitlistForms.add(formLocation);
     capturePostHogEvent('waitlist_form_viewed', {
       source: 'landing_page',
@@ -69,10 +86,7 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '1x0000000
       ? new IntersectionObserver(
           (entries) => {
             entries.forEach((entry) => {
-              if (!entry.isIntersecting || !(entry.target instanceof HTMLFormElement)) {
-                return;
-              }
-
+              if (!entry.isIntersecting || !(entry.target instanceof HTMLFormElement)) return;
               const formLocation = entry.target.dataset.waitlistSource ?? 'unknown';
               trackFormViewed(formLocation);
               formViewObserver?.unobserve(entry.target);
@@ -82,19 +96,62 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '1x0000000
         )
       : null;
 
-  forms.forEach((element) => {
-    if (!(element instanceof HTMLFormElement)) {
-      return;
+  const submitForm = async (
+    email: string,
+    captchaToken: string,
+    form: HTMLFormElement,
+    emailInput: HTMLInputElement,
+    message: HTMLParagraphElement,
+    formLocation: string
+  ) => {
+    const eventProperties = { email, source: 'landing_page', form_location: formLocation };
+    message.textContent = 'Submitting...';
+    message.className = 'waitlist-message waitlist-message-pending';
+
+    try {
+      const response = await fetch('/api/waitlist', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, 'cf-turnstile-response': captchaToken }),
+      });
+
+      const data = (await response.json().catch(() => null)) as { error?: string; success?: boolean; message?: string } | null;
+
+      if (response.ok) {
+        capturePostHogEvent('waitlist_signup', { ...eventProperties, status: 'success' });
+        capturePostHogEvent('waitlist_signup_success', eventProperties);
+        message.textContent = data?.message ?? "Thanks. You're on the early access list.";
+        message.className = 'waitlist-message waitlist-message-success';
+        emailInput.value = '';
+        // Reset token so next submission re-executes Turnstile
+        turnstileToken = null;
+        const tsWidget = form.querySelector('.cf-turnstile') as HTMLElement | null;
+        if (tsWidget && (window as unknown as Record<string, unknown>)['turnstile']) {
+          ((window as unknown as Record<string, unknown>)['turnstile'] as { reset: (el: HTMLElement) => void }).reset(tsWidget);
+        }
+      } else {
+        const errorMessage = data?.error || 'Something went wrong. Please try again.';
+        capturePostHogEvent('waitlist_signup', { ...eventProperties, status: 'failed', error: errorMessage });
+        capturePostHogEvent('waitlist_signup_failed', { ...eventProperties, error: errorMessage });
+        message.textContent = errorMessage;
+        message.className = 'waitlist-message waitlist-message-error';
+      }
+    } catch {
+      capturePostHogEvent('waitlist_signup', { ...eventProperties, status: 'failed', error: 'network_error' });
+      message.textContent = 'Network error. Please try again.';
+      message.className = 'waitlist-message waitlist-message-error';
     }
+  };
+
+  forms.forEach((element) => {
+    if (!(element instanceof HTMLFormElement)) return;
 
     const form = element;
     const formLocation = form.dataset.waitlistSource ?? 'unknown';
     const emailInput = form.querySelector('[data-waitlist-email]') as HTMLInputElement | null;
     const message = form.parentElement?.querySelector('[data-waitlist-message]') as HTMLParagraphElement | null;
 
-    if (!emailInput || !message) {
-      return;
-    }
+    if (!emailInput || !message) return;
 
     if (formViewObserver) {
       formViewObserver.observe(form);
@@ -104,88 +161,46 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '1x0000000
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-
       const email = emailInput.value.trim();
-      const formData = new FormData(form);
-      const captchaTokenValue = formData.get('cf-turnstile-response');
-      const captchaToken = typeof captchaTokenValue === 'string' ? captchaTokenValue.trim() : '';
-      const eventProperties = {
-        email,
-        source: 'landing_page',
-        form_location: formLocation,
-      };
 
-      if (!captchaToken) {
-        capturePostHogEvent('waitlist_signup', {
-          ...eventProperties,
-          status: 'failed',
-          error: 'missing_captcha_token',
-        });
-        capturePostHogEvent('waitlist_signup_failed', {
-          ...eventProperties,
-          error: 'missing_captcha_token',
-        });
-
-        message.textContent = 'Please complete CAPTCHA verification and try again.';
+      if (turnstileError) {
+        message.textContent = 'CAPTCHA verification failed. Please reload the page and try again.';
         message.className = 'waitlist-message waitlist-message-error';
         return;
       }
 
-      message.textContent = 'Submitting...';
+      if (turnstileToken) {
+        // Token already available — submit immediately
+        await submitForm(email, turnstileToken, form, emailInput, message, formLocation);
+        return;
+      }
+
+      // Token not yet available — try to execute Turnstile and wait
+      message.textContent = 'Verifying...';
       message.className = 'waitlist-message waitlist-message-pending';
 
-      try {
-        const response = await fetch('/api/waitlist', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
+      const tsApi = (window as unknown as Record<string, unknown>)['turnstile'] as
+        | { execute: (el: HTMLElement, opts?: Record<string, unknown>) => void }
+        | undefined;
+      const tsWidget = form.querySelector('.cf-turnstile') as HTMLElement | null;
+
+      if (tsApi && tsWidget) {
+        tsApi.execute(tsWidget, {
+          callback: async (token: string) => {
+            turnstileToken = token;
+            await submitForm(email, token, form, emailInput, message, formLocation);
           },
-          body: JSON.stringify({
-            email,
-            'cf-turnstile-response': captchaToken,
-          }),
         });
-
-        const data = (await response.json().catch(() => null)) as { error?: string } | null;
-        const errorMessage = data?.error || 'Something went wrong. Please try again.';
-
-        if (response.ok) {
-          capturePostHogEvent('waitlist_signup', {
-            ...eventProperties,
-            status: 'success',
-          });
-          capturePostHogEvent('waitlist_signup_success', eventProperties);
-
-          message.textContent = "Thanks. You're on the early access list.";
-          message.className = 'waitlist-message waitlist-message-success';
-          emailInput.value = '';
+      } else {
+        // Turnstile script not loaded yet — fallback: read from FormData
+        const formData = new FormData(form);
+        const fallbackToken = formData.get('cf-turnstile-response');
+        if (typeof fallbackToken === 'string' && fallbackToken) {
+          await submitForm(email, fallbackToken, form, emailInput, message, formLocation);
         } else {
-          capturePostHogEvent('waitlist_signup', {
-            ...eventProperties,
-            status: 'failed',
-            error: errorMessage,
-          });
-          capturePostHogEvent('waitlist_signup_failed', {
-            ...eventProperties,
-            error: errorMessage,
-          });
-
-          message.textContent = errorMessage;
+          message.textContent = 'CAPTCHA not ready. Please wait a moment and try again.';
           message.className = 'waitlist-message waitlist-message-error';
         }
-      } catch (error) {
-        capturePostHogEvent('waitlist_signup', {
-          ...eventProperties,
-          status: 'failed',
-          error: 'network_error',
-        });
-        capturePostHogEvent('waitlist_signup_failed', {
-          ...eventProperties,
-          error: 'network_error',
-        });
-
-        message.textContent = 'Network error. Please try again.';
-        message.className = 'waitlist-message waitlist-message-error';
       }
     });
   });
