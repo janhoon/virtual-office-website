@@ -31,12 +31,12 @@ const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '1x0000000
         >
           Join Waitlist
         </button>
-        <div class="turnstile-widget" style="display:none">
+        <div class="turnstile-widget">
           <div
             class="cf-turnstile"
             data-sitekey={turnstileSiteKey}
-            data-size="invisible"
             data-action="waitlist_signup"
+            data-appearance="interaction-only"
             data-callback="onSpekeTurnstileSuccess"
             data-error-callback="onSpekeTurnstileError"
             data-expired-callback="onSpekeTurnstileExpired"
