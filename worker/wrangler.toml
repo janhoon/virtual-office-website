@@ -6,7 +6,7 @@ account_id = "50ffc8813209c2a46a7992719fc768d2"
 [[d1_databases]]
 binding = "DB"
 database_name = "speke-waitlist"
-database_id = "TBD"  # Run: wrangler d1 create speke-waitlist
+database_id = "c1cd6b67-ba71-4cdc-9bdb-2318896e3573"
 
-[vars]
-TURNSTILE_SECRET_KEY = "1x0000000000000000000000000000000AA"
+# TURNSTILE_SECRET_KEY is stored as a Wrangler secret (not committed)
+# Set via: wrangler secret put TURNSTILE_SECRET_KEY
