@@ -55,6 +55,8 @@ export CLOUDFLARE_API_TOKEN="your-api-token-here"
 wrangler pages deploy dist --project-name=speke-website
 ```
 
+Before deploy, verify root `wrangler.toml` has the `[[d1_databases]]` binding named `DB` pointing at the `speke-waitlist` database ID. This binding is required for Pages Functions (`/api/waitlist`) to access D1.
+
 ## Step 3: Configure Custom Domain
 
 1. Go to Cloudflare Dashboard → Pages → speke-website

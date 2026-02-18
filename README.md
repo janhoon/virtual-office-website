@@ -68,6 +68,8 @@ wrangler pages deploy dist --project-name=virtual-office-website
 # Set WAITLIST_API_URL environment variable to your worker URL
 ```
 
+`wrangler.toml` includes the Pages Functions D1 binding (`DB`) for `speke-waitlist`. Keep this binding in sync with the active D1 database ID so `/api/waitlist` can write in production.
+
 ## Environment Variables
 
 - `WAITLIST_API_URL`: URL of the waitlist worker (e.g., `https://waitlist.getspeke.com/api/subscribe`)

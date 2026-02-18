@@ -105,8 +105,8 @@
       "PHASE 4: Test locally",
       "pnpm dev to start Astro dev server",
       "cd worker && wrangler dev to run Worker locally",
-      "TEST: Submit form → token sent to worker → worker verifies → email saved",
-      "TEST: Submit without token → 400 returned",
+      "TEST: Submit form \u2192 token sent to worker \u2192 worker verifies \u2192 email saved",
+      "TEST: Submit without token \u2192 400 returned",
       "TEST: Turnstile widget renders (even in test mode it may show briefly)",
       "",
       "PHASE 5: Update PRD and commit",
@@ -116,11 +116,29 @@
       "",
       "PHASE 6: Deployment instructions (document, do not auto-deploy)",
       "Jan must:",
-      "  1. Go to Cloudflare Dashboard → Turnstile → Add site → getspeke.com → note Site Key + Secret Key",
+      "  1. Go to Cloudflare Dashboard \u2192 Turnstile \u2192 Add site \u2192 getspeke.com \u2192 note Site Key + Secret Key",
       "  2. Add PUBLIC_TURNSTILE_SITE_KEY to Cloudflare Pages env vars (project virtual-office-website)",
       "  3. Add TURNSTILE_SECRET_KEY as Worker Secret: wrangler secret put TURNSTILE_SECRET_KEY",
       "  4. Rebuild and redeploy Pages: PUBLIC_TURNSTILE_SITE_KEY=<real-key> pnpm build && wrangler pages deploy dist --project-name virtual-office-website --branch=master",
       "  5. Redeploy worker: cd worker && wrangler deploy"
+    ]
+  },
+  {
+    "category": "Waitlist CAPTCHA + D1 binding reliability (Pages)",
+    "description": "Fix production regression where /api/waitlist returns 'Database not configured' by ensuring Cloudflare Pages D1 binding is defined and persisted via wrangler.toml/deployment config; keep Turnstile key wiring stable.",
+    "fizzyCard": 276,
+    "passes": true,
+    "steps": [
+      "PHASE 1: Ensure wrangler.toml includes D1 binding for Pages Functions",
+      "Add [[d1_databases]] binding DB to wrangler.toml with speke-waitlist database id",
+      "PHASE 2: Ensure Turnstile site key is wired consistently for production build",
+      "Keep PUBLIC_TURNSTILE_SITE_KEY sourced from env and verify build output contains production key",
+      "PHASE 3: Build and deploy",
+      "Run pnpm build and deploy with wrangler pages deploy to master",
+      "PHASE 4: Verify runtime behavior",
+      "Confirm /api/waitlist can resolve env.DB and no longer returns 'Database not configured'",
+      "PHASE 5: Update progress + mark pass",
+      "Set passes true, update progress.txt, commit changes"
     ]
   }
 ]

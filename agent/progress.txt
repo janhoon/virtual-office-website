@@ -39,3 +39,9 @@
 - ✅ Added local test env defaults (`PUBLIC_TURNSTILE_SITE_KEY` in `.env`/`.env.example`, `TURNSTILE_SECRET_KEY` in `worker/wrangler.toml`)
 - ✅ Documented production key setup and deployment steps in `README.md` and `DEPLOYMENT.md`
 - ✅ Verified with `npm run build`
+
+## Pages D1 Binding Reliability (2026-02-18)
+- ✅ Added root `wrangler.toml` D1 binding (`DB`) for `speke-waitlist` with production/preview database IDs
+- ✅ Kept Turnstile site key wiring consistent by centralizing `PUBLIC_TURNSTILE_SITE_KEY` resolution in `src/constants/turnstile.ts`
+- ✅ Documented Pages D1 binding requirement for production waitlist API in `README.md` and `DEPLOYMENT.md`
+- ✅ Verified with `npm run build`
