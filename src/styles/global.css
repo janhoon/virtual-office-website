@@ -511,6 +511,10 @@ a {
   gap: 0.65rem;
 }
 
+.turnstile-widget {
+  grid-column: 1 / -1;
+}
+
 .waitlist-input {
   width: 100%;
   border-radius: var(--radius-sm);

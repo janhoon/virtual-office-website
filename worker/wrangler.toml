@@ -7,3 +7,6 @@ account_id = "50ffc8813209c2a46a7992719fc768d2"
 binding = "DB"
 database_name = "speke-waitlist"
 database_id = "TBD"  # Run: wrangler d1 create speke-waitlist
+
+[vars]
+TURNSTILE_SECRET_KEY = "1x0000000000000000000000000000000AA"

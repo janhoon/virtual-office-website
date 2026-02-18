@@ -73,6 +73,17 @@ Add:
 - **Value**: `phc_SufADq1sXKA8eN4wSAMaAmIPwWVP3GR9mcPaE8xcJLW`
 - **Name**: `PUBLIC_POSTHOG_HOST`
 - **Value**: `https://eu.i.posthog.com`
+- **Name**: `PUBLIC_TURNSTILE_SITE_KEY`
+- **Value**: `your-turnstile-site-key`
+
+Set the worker secret separately:
+
+```bash
+cd worker
+wrangler secret put TURNSTILE_SECRET_KEY
+```
+
+Use Turnstile test keys only for local development. Add production keys in Cloudflare dashboard/secrets.
 
 Or use your custom domain if you set one up for the worker.
 

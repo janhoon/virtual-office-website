@@ -1,4 +1,5 @@
 ---
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA';
 ---
 
 <header class="site-header">
@@ -44,6 +45,14 @@
         >
           Join Waitlist
         </button>
+        <div class="turnstile-widget">
+          <div
+            class="cf-turnstile"
+            data-sitekey={turnstileSiteKey}
+            data-appearance="interaction-only"
+            data-action="waitlist_signup"
+          ></div>
+        </div>
       </form>
       <p class="waitlist-message hero-waitlist-message" aria-live="polite" data-waitlist-message></p>
       <p class="hero-meta">Pilot enrollment is currently open for selected teams.</p>

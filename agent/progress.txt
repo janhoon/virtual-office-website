@@ -31,3 +31,11 @@
   - `waitlist_signup_success` and `waitlist_signup_failed`
 - ✅ Added PostHog env configuration docs and defaults (`.env.example`, `wrangler.toml`, README, DEPLOYMENT)
 - ✅ Verified with `npm run build`
+
+## Turnstile CAPTCHA Protection (2026-02-18)
+- ✅ Added Cloudflare Turnstile script in `Layout.astro` and widget instances to hero and waitlist forms
+- ✅ Updated waitlist submission flow to include `cf-turnstile-response` token in POST payload
+- ✅ Added server-side CAPTCHA verification in `worker/src/index.ts` before D1 writes
+- ✅ Added local test env defaults (`PUBLIC_TURNSTILE_SITE_KEY` in `.env`/`.env.example`, `TURNSTILE_SECRET_KEY` in `worker/wrangler.toml`)
+- ✅ Documented production key setup and deployment steps in `README.md` and `DEPLOYMENT.md`
+- ✅ Verified with `npm run build`

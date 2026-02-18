@@ -1,4 +1,5 @@
 ---
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '1x00000000000000000000AA';
 ---
 
 <section id="waitlist" class="section">
@@ -30,6 +31,14 @@
         >
           Join Waitlist
         </button>
+        <div class="turnstile-widget">
+          <div
+            class="cf-turnstile"
+            data-sitekey={turnstileSiteKey}
+            data-appearance="interaction-only"
+            data-action="waitlist_signup"
+          ></div>
+        </div>
       </form>
       <p class="waitlist-footnote">No spam. We only send product updates and pilot invites.</p>
       <p class="waitlist-message" aria-live="polite" data-waitlist-message></p>
@@ -97,11 +106,30 @@
       e.preventDefault();
 
       const email = emailInput.value.trim();
+      const formData = new FormData(form);
+      const captchaTokenValue = formData.get('cf-turnstile-response');
+      const captchaToken = typeof captchaTokenValue === 'string' ? captchaTokenValue.trim() : '';
       const eventProperties = {
         email,
         source: 'landing_page',
         form_location: formLocation,
       };
+
+      if (!captchaToken) {
+        capturePostHogEvent('waitlist_signup', {
+          ...eventProperties,
+          status: 'failed',
+          error: 'missing_captcha_token',
+        });
+        capturePostHogEvent('waitlist_signup_failed', {
+          ...eventProperties,
+          error: 'missing_captcha_token',
+        });
+
+        message.textContent = 'Please complete CAPTCHA verification and try again.';
+        message.className = 'waitlist-message waitlist-message-error';
+        return;
+      }
 
       message.textContent = 'Submitting...';
       message.className = 'waitlist-message waitlist-message-pending';
@@ -112,7 +140,10 @@
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify({ email }),
+          body: JSON.stringify({
+            email,
+            'cf-turnstile-response': captchaToken,
+          }),
         });
 
         const data = (await response.json().catch(() => null)) as { error?: string } | null;

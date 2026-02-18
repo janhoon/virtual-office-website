@@ -73,8 +73,20 @@ wrangler pages deploy dist --project-name=virtual-office-website
 - `WAITLIST_API_URL`: URL of the waitlist worker (e.g., `https://waitlist.getspeke.com/api/subscribe`)
 - `PUBLIC_POSTHOG_API_KEY`: PostHog project API key for website analytics
 - `PUBLIC_POSTHOG_HOST`: PostHog host URL (use `https://eu.i.posthog.com`)
+- `PUBLIC_TURNSTILE_SITE_KEY`: Cloudflare Turnstile site key (`1x00000000000000000000AA` test key for local dev)
+- `TURNSTILE_SECRET_KEY`: Cloudflare Turnstile secret key for the worker (`1x0000000000000000000000000000000AA` test key for local dev)
 
 Copy `.env.example` to `.env` for local setup.
+
+For production, do not commit real Turnstile keys. Add `PUBLIC_TURNSTILE_SITE_KEY` in Cloudflare Pages environment variables and set `TURNSTILE_SECRET_KEY` as a worker secret in Cloudflare.
+
+## Turnstile Deployment Checklist
+
+1. Create a Turnstile site in Cloudflare Dashboard for `getspeke.com`, then copy the Site Key and Secret Key.
+2. Add `PUBLIC_TURNSTILE_SITE_KEY` to Cloudflare Pages env vars for project `virtual-office-website`.
+3. Add `TURNSTILE_SECRET_KEY` as a worker secret (`cd worker && wrangler secret put TURNSTILE_SECRET_KEY`).
+4. Rebuild and redeploy Pages with the real site key (`PUBLIC_TURNSTILE_SITE_KEY=<real-key> npm run build && wrangler pages deploy dist --project-name virtual-office-website --branch=master`).
+5. Redeploy the worker (`cd worker && wrangler deploy`).
 
 ## Features
 
@@ -84,6 +96,7 @@ Copy `.env.example` to `.env` for local setup.
 - ✅ Cloudflare Worker backend with D1 database
 - ✅ CORS support
 - ✅ Duplicate email prevention
+- ✅ Cloudflare Turnstile CAPTCHA on waitlist form
 - ✅ Responsive design
 - ✅ SEO optimized
 # PostHog analytics enabled
