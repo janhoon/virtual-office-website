@@ -44,6 +44,10 @@ You autonomously implement features from `agent/prd.json`. Each task has:
 - Check TypeScript compilation
 - Test responsive design (conceptually)
 - Validate against acceptance criteria
+- If frontend/UI changed, run a browser sanity check before commit:
+  - Start preview: `npm run preview -- --host 127.0.0.1 --port 4173`
+  - Capture screenshot: `npx -y playwright screenshot --device="Desktop Chrome" http://127.0.0.1:4173 /tmp/ralph-website-check.png`
+  - Confirm changed area renders without blocking UI errors
 
 ### 4. Completion
 - Update `agent/prd.json`: set `passes: true` for completed task
