@@ -140,5 +140,18 @@
       "PHASE 5: Update progress + mark pass",
       "Set passes true, update progress.txt, commit changes"
     ]
+  },
+  {
+    "category": "Fix waitlist 500 on submit",
+    "description": "Resolve server 500 errors on waitlist submit by hardening DB insert logic against schema variations and returning actionable API errors.",
+    "fizzyCard": 277,
+    "passes": true,
+    "steps": [
+      "Reproduce and inspect waitlist API insert path",
+      "Implement robust insert fallback for legacy/new waitlist schemas",
+      "Improve backend error mapping to avoid opaque 500s",
+      "Build + deploy",
+      "Update progress and mark task complete"
+    ]
   }
 ]

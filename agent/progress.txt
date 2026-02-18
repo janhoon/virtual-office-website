@@ -45,3 +45,9 @@
 - ✅ Kept Turnstile site key wiring consistent by centralizing `PUBLIC_TURNSTILE_SITE_KEY` resolution in `src/constants/turnstile.ts`
 - ✅ Documented Pages D1 binding requirement for production waitlist API in `README.md` and `DEPLOYMENT.md`
 - ✅ Verified with `npm run build`
+
+## Waitlist 500 Submit Fix (2026-02-18)
+- ✅ Hardened waitlist inserts in `src/pages/api/waitlist.ts` by introspecting D1 table schema and supporting legacy/new timestamp columns (`subscribed_at`, `created_at`, `joined_at`)
+- ✅ Added robust backend error mapping for invalid JSON, CAPTCHA service outages, missing/misaligned schema, duplicates, and generic service failures to avoid opaque 500 responses
+- ✅ Applied the same schema-aware insert/error handling logic to `worker/src/index.ts` for parity on `/api/subscribe` and resilient `/api/list` queries
+- ✅ Verified with `npm run build` and `npx tsc --noEmit -p worker/tsconfig.json`
