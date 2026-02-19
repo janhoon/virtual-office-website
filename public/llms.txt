@@ -21,7 +21,7 @@
 ## Canonical URLs
 - Website: https://virtual-office-dev.janhoon.com/
 - Live Application: https://virtual-office-dev.janhoon.com/
-- Source Repository: https://github.com/janhoon/speke-website
+- Source Repository: Private
 
 ## Contact
 - Email: hello@getspeke.com
