@@ -1,5 +1,18 @@
 [
   {
+    "category": "Website rebrand + modern remote-team messaging",
+    "description": "Align website visuals with current app branding assets and rewrite marketing copy for modern remote teams (knowledge sharing, frequent speaking, staying in sync).",
+    "fizzyCard": 316,
+    "passes": false,
+    "steps": [
+      "Adopt appropriate branding assets from app branding directory",
+      "Apply logos/visuals in correct website surfaces with good contrast",
+      "Rewrite copy away from email-only framing toward modern remote collaboration",
+      "Run build and sanity checks",
+      "Update progress and mark pass"
+    ]
+  },
+  {
     "category": "Feature - PostHog Integration (Website)",
     "description": "Integrate PostHog analytics into Speke Astro landing page for marketing analytics, conversion tracking, and A/B testing.",
     "fizzyCard": 253,
