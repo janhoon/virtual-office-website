@@ -10,7 +10,7 @@ interface Props {
 	schema?: Record<string, unknown> | Record<string, unknown>[];
 }
 
-const { title, description, canonical, keywords, ogImage = '/og-image.svg', schema } = Astro.props;
+const { title, description, canonical, keywords, ogImage = '/og-image.png', schema } = Astro.props;
 const siteName = 'Speke';
 const canonicalUrl = canonical ?? Astro.url.toString();
 const ogImageUrl = new URL(ogImage, Astro.url).toString();
@@ -22,7 +22,7 @@ const schemaContent = schema ? JSON.stringify(schema) : null;
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content={description} />
-		<meta name="keywords" content={keywords ?? 'speke, enterprise team chat, remote team communication, drop-in voice channels, private team messaging, slack alternative, discord alternative for business'} />
+		<meta name="keywords" content={keywords ?? 'speke, remote team communication, knowledge sharing software, voice rooms for teams, private team workspace, microsoft teams companion'} />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1" />
 		<meta name="theme-color" content="#101013" />
@@ -44,7 +44,7 @@ const schemaContent = schema ? JSON.stringify(schema) : null;
 		<link rel="preconnect" href="https://fonts.googleapis.com" />
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" type="image/png" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 		{schemaContent && <script type="application/ld+json" set:html={schemaContent} />}

@@ -4,25 +4,27 @@ import { turnstileSiteKey } from '../constants/turnstile';
 
 <header class="site-header">
   <div class="shell header-inner">
-    <a href="/" class="brand-mark">Speke</a>
+    <a href="/" class="brand-mark" aria-label="Speke home">
+      <img src="/branding/speke-text-logo.png" alt="Speke" class="brand-logo" />
+    </a>
     <nav class="top-nav" aria-label="Primary">
       <a href="#features">Features</a>
-      <a href="#compare">Why Speke</a>
+      <a href="#compare">How it fits</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <p class="header-note">Enterprise remote communication, rethought</p>
+    <p class="header-note">Built for modern remote teams</p>
   </div>
 </header>
 
 <section class="hero" id="top">
   <div class="shell hero-grid">
     <div class="hero-copy reveal">
-      <p class="eyebrow">Made for established enterprises</p>
+      <p class="eyebrow">For teams already using Microsoft Teams, Slack, and docs</p>
       <h1>
-        Move everyday teamwork out of long email threads.
+        Keep work moving with shared context and instant voice.
       </h1>
       <p class="hero-lead">
-        Speke gives teams one place for clear written communication and quick voice conversations, with the privacy and control enterprise organizations expect.
+        Speke gives remote teams one place to share knowledge, speak up quickly, and stay in sync across projects without adding more meeting overhead.
       </p>
       <form class="hero-waitlist" data-waitlist-form data-waitlist-source="hero">
         <input
@@ -55,12 +57,12 @@ import { turnstileSiteKey } from '../constants/turnstile';
         </div>
       </form>
       <p class="waitlist-message hero-waitlist-message" aria-live="polite" data-waitlist-message></p>
-      <p class="hero-meta">Designed for companies transitioning from email-only communication.</p>
+      <p class="hero-meta">Deploy Speke alongside your existing collaboration stack, including Microsoft Teams.</p>
       <ul class="trust-chips" aria-label="Key capabilities">
-        <li>Organized team conversations</li>
-        <li>Quick voice discussions</li>
-        <li>Private company workspace</li>
-        <li>Role-based access controls</li>
+        <li>Knowledge that stays searchable</li>
+        <li>Voice rooms for quick alignment</li>
+        <li>Live presence and speaking status</li>
+        <li>Private, role-based workspaces</li>
       </ul>
     </div>
 
@@ -70,19 +72,19 @@ import { turnstileSiteKey } from '../constants/turnstile';
         <div class="preview-sidebar">
           <p class="preview-label">Channels</p>
           <ul>
-            <li># executive-updates</li>
-            <li># product-decisions</li>
-            <li># support</li>
+            <li># product-knowledge</li>
+            <li># launch-plan</li>
+            <li># customer-feedback</li>
           </ul>
           <p class="preview-label">Voice Rooms</p>
           <ul>
-            <li>Operations Floor</li>
-            <li>Leadership Standup</li>
+            <li>Daily Sync</li>
+            <li>Design Review</li>
           </ul>
         </div>
         <div class="preview-main">
-          <p class="preview-meta">Now active in Operations Floor</p>
-          <h2>Start in chat. Talk when needed.</h2>
+          <p class="preview-meta">Now active in Daily Sync</p>
+          <h2>Share it in chat. Resolve it in voice.</h2>
           <div class="participants">
             <span class="participant in-call">AC</span>
             <span class="participant in-call">MJ</span>
@@ -90,7 +92,7 @@ import { turnstileSiteKey } from '../constants/turnstile';
             <span class="participant">TL</span>
           </div>
           <p class="preview-note">
-            Teams move from written updates to live conversation in one click without switching tools.
+            Teams post updates once, jump into quick voice when needed, and keep decisions visible for everyone.
           </p>
         </div>
       </div>

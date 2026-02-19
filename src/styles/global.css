@@ -66,23 +66,20 @@ a {
 .brand-mark {
   display: inline-flex;
   align-items: center;
-  gap: 0.55rem;
   margin: 0;
-  font-family: 'JetBrains Mono', monospace;
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: var(--text-0);
-  letter-spacing: 0.02em;
   text-decoration: none;
+  line-height: 0;
 }
 
-.brand-mark::before {
-  content: '';
-  width: 0.65rem;
-  height: 0.65rem;
-  border-radius: 999px;
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-strong) 100%);
-  box-shadow: 0 0 0 6px rgba(245, 158, 11, 0.13);
+.brand-logo {
+  display: block;
+  width: clamp(6.6rem, 12vw, 8.4rem);
+  height: auto;
+  filter: drop-shadow(0 1px 8px rgba(0, 0, 0, 0.24));
+}
+
+.footer-brand .brand-logo {
+  width: clamp(7rem, 14vw, 9rem);
 }
 
 .top-nav {

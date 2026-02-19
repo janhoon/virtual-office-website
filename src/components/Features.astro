@@ -1,49 +1,49 @@
 ---
 const features = [
   {
-    title: 'Organized Team Conversations',
-    description: 'Keep updates, decisions, and requests in clear team spaces instead of long email chains.',
-    badge: 'TEXT'
+    title: 'Knowledge Sharing That Sticks',
+    description: 'Capture updates, decisions, and context in structured channels so everyone can find what matters later.',
+    badge: 'KNOWLEDGE'
   },
   {
-    title: 'Quick Voice Conversations',
-    description: 'When typing is too slow, start a live discussion right away and return to work without scheduling a formal meeting.',
+    title: 'Speak Often, Without Scheduling',
+    description: 'Start a live voice room in one click when typing gets slow, then drop back to async work when aligned.',
     badge: 'VOICE'
   },
   {
-    title: 'Private Company Workspace',
-    description: 'Each company has its own secure workspace, with clear boundaries between organizations.',
+    title: 'Keep Teams in Sync Daily',
+    description: 'Presence and speaking indicators show who is available now, so blockers get resolved before they spread.',
+    badge: 'SYNC'
+  },
+  {
+    title: 'Fits Your Existing Stack',
+    description: 'Use Speke with the tools your team already runs on, including Microsoft Teams and shared docs.',
+    badge: 'STACK'
+  },
+  {
+    title: 'Private by Organization',
+    description: 'Each company gets an isolated workspace with clear member boundaries and role-aware access.',
     badge: 'PRIVACY'
   },
   {
-    title: 'Clear Team Availability',
-    description: 'See who is online and who is already in conversation so people can connect at the right time.',
-    badge: 'PRESENCE'
-  },
-  {
-    title: 'Managed Access and Roles',
-    description: 'Invite employees, assign roles, and manage workspace access with enterprise-friendly controls.',
-    badge: 'ADMIN'
-  },
-  {
-    title: 'Easy for Email-First Teams',
-    description: 'Simple, familiar workflows help teams adopt better communication habits without a steep learning curve.',
-    badge: 'UX'
+    title: 'Built for Productive Remote Teams',
+    description: 'Keep communication fast, focused, and searchable across functions without adding communication debt.',
+    badge: 'FLOW'
   }
 ];
 
 const workflow = [
   {
-    title: 'Share updates in writing',
-    detail: 'Teams post updates and decisions in dedicated spaces so everyone sees the same information.'
+    title: 'Share updates where everyone can find them',
+    detail: 'Teams post progress, plans, and decisions in channels that stay organized and searchable.'
   },
   {
-    title: 'Talk live when speed matters',
-    detail: 'When a topic is urgent, teammates start a voice conversation immediately and bring in the right people.'
+    title: 'Talk live when context is blocking progress',
+    detail: 'Start voice instantly with the right people instead of waiting for another scheduled meeting slot.'
   },
   {
-    title: 'Keep decisions easy to find',
-    detail: 'After the conversation, outcomes are recorded in writing so teams can refer back to them later.'
+    title: 'Close the loop in writing',
+    detail: 'Record outcomes back in channel so the whole team stays aligned across time zones.'
   }
 ];
 ---
@@ -51,10 +51,10 @@ const workflow = [
 <section id="features" class="section">
   <div class="shell">
     <div class="section-heading reveal">
-      <p class="eyebrow">Why this category exists</p>
-      <h2>Remote teams should not have to choose between communication speed and enterprise control.</h2>
+      <p class="eyebrow">Built for modern remote work</p>
+      <h2>One communication layer for teams that need shared knowledge and fast decisions.</h2>
       <p>
-        Many enterprises still rely on email for daily collaboration. Speke gives teams a clearer way to communicate, respond faster, and keep decisions visible without losing governance and privacy.
+        Speke helps remote teams communicate in a tighter loop: write for clarity, speak for speed, and keep everything visible in one private workspace.
       </p>
       <a
         href="#waitlist"
@@ -79,7 +79,7 @@ const workflow = [
     </div>
 
     <div class="workflow reveal" aria-label="How teams work in Speke">
-      <h3>How teams use it in practice</h3>
+      <h3>How teams use Speke day to day</h3>
       <ol>
         {workflow.map((step) => (
           <li>
@@ -91,47 +91,41 @@ const workflow = [
     </div>
 
     <div class="comparison reveal" id="compare">
-      <h3>How Speke improves daily communication</h3>
+      <h3>How Speke improves modern team workflows</h3>
       <div class="comparison-table-wrapper">
         <table>
           <thead>
             <tr>
               <th>Day-to-day need</th>
-              <th>Email only</th>
-              <th>Mixed tools</th>
-              <th>Speke</th>
+              <th>Typical modern stack</th>
+              <th>With Speke</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>Share updates and announcements</td>
-              <td>Slow threads</td>
-              <td>Scattered</td>
-              <td>Organized</td>
+              <td>Share project context</td>
+              <td>Scattered across chats, docs, and threads</td>
+              <td>Structured channel history</td>
             </tr>
             <tr>
-              <td>Resolve urgent questions quickly</td>
-              <td>Delayed replies</td>
-              <td>Extra meeting steps</td>
-              <td>Immediate conversation</td>
+              <td>Resolve blockers quickly</td>
+              <td>Ping, wait, then schedule a call</td>
+              <td>Instant voice room handoff</td>
             </tr>
             <tr>
-              <td>Find past decisions later</td>
-              <td>Hard to track</td>
-              <td>Spread across systems</td>
-              <td>Searchable history</td>
+              <td>Keep everyone aligned</td>
+              <td>Context split across tools</td>
+              <td>One searchable team layer</td>
             </tr>
             <tr>
-              <td>Know who is available now</td>
-              <td>Limited visibility</td>
-              <td>Partial visibility</td>
-              <td>Clear status</td>
+              <td>Know who can respond now</td>
+              <td>Manual status checking</td>
+              <td>Live presence and speaking signals</td>
             </tr>
             <tr>
-              <td>Control privacy and access</td>
-              <td>Basic controls</td>
-              <td>Varies by tool</td>
-              <td>Enterprise-ready</td>
+              <td>Protect workspace boundaries</td>
+              <td>Inconsistent controls by tool</td>
+              <td>Organization-level isolation</td>
             </tr>
           </tbody>
         </table>
