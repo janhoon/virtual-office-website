@@ -2,14 +2,16 @@
 import Layout from '../layouts/Layout.astro';
 import Hero from '../components/Hero.astro';
 import Features from '../components/Features.astro';
-import Faq from '../components/Faq.astro';
+import DemoSection from '../components/DemoSection.astro';
+import PlatformStrip from '../components/PlatformStrip.astro';
+import Gallery from '../components/Gallery.astro';
 import Waitlist from '../components/Waitlist.astro';
 import Footer from '../components/Footer.astro';
 
-const title = 'Speke | Knowledge Sharing + Instant Voice for Remote Teams';
-const description = 'Speke helps modern remote teams share knowledge, talk often, and stay in sync with structured channels, instant voice rooms, and private workspaces.';
+const title = 'Speke | The Virtual Office for Remote Teams';
+const description = 'Speke gives remote teams persistent voice channels, live presence, and instant screen sharing. Stop scheduling — just talk.';
 const canonical = 'https://virtual-office-dev.janhoon.com/';
-const keywords = 'remote team communication, modern team collaboration software, microsoft teams companion, knowledge sharing platform, voice rooms for work';
+const keywords = 'virtual office, remote team voice channels, live presence, screen sharing, team communication, desktop app for remote teams';
 
 const schema = {
   '@context': 'https://schema.org',
@@ -18,56 +20,28 @@ const schema = {
       '@type': 'SoftwareApplication',
       name: 'Speke',
       applicationCategory: 'BusinessApplication',
-      operatingSystem: 'Web',
+      operatingSystem: 'macOS, Windows, Linux, Web',
       url: canonical,
       description,
       offers: {
         '@type': 'Offer',
         price: '0',
-        priceCurrency: 'USD'
+        priceCurrency: 'USD',
+        availability: 'https://schema.org/PreOrder'
       },
       featureList: [
-        'Structured channels for shared knowledge',
-        'Instant voice rooms for fast alignment',
-        'Presence and speaking indicators',
-        'Organization-isolated private workspaces',
-        'Role-aware member access controls'
-      ]
-    },
-    {
-      '@type': 'FAQPage',
-      mainEntity: [
-        {
-          '@type': 'Question',
-          name: 'Who is Speke built for?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Speke is built for modern remote and hybrid teams that need stronger knowledge sharing, faster decisions, and clear day-to-day alignment.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Is Speke only for teams moving off email?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'No. Speke is for teams already using tools like Microsoft Teams, chat, and docs, but missing one communication layer for context and instant voice.'
-          }
-        },
-        {
-          '@type': 'Question',
-          name: 'Does this support organization-level privacy?',
-          acceptedAnswer: {
-            '@type': 'Answer',
-            text: 'Yes. Speke uses organization-level workspace isolation so each company collaborates in its own private context.'
-          }
-        }
+        'Persistent voice channels',
+        'Live presence indicators',
+        'Simultaneous screen sharing',
+        'Organized channels and threads',
+        'Native desktop app for macOS, Windows, Linux'
       ]
     }
   ]
 };
 ---
 
-<Layout 
+<Layout
   title={title}
   description={description}
   canonical={canonical}
@@ -77,8 +51,26 @@ const schema = {
   <main>
     <Hero />
     <Features />
-    <Faq />
+    <DemoSection />
+    <PlatformStrip />
+    <Gallery />
     <Waitlist />
     <Footer />
   </main>
 </Layout>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+</script>
