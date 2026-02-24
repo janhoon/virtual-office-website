@@ -1,135 +1,150 @@
 ---
-const features = [
-  {
-    title: 'Knowledge Sharing That Sticks',
-    description: 'Capture updates, decisions, and context in structured channels so everyone can find what matters later.',
-    badge: 'KNOWLEDGE'
-  },
-  {
-    title: 'Speak Often, Without Scheduling',
-    description: 'Start a live voice room in one click when typing gets slow, then drop back to async work when aligned.',
-    badge: 'VOICE'
-  },
-  {
-    title: 'Keep Teams in Sync Daily',
-    description: 'Presence and speaking indicators show who is available now, so blockers get resolved before they spread.',
-    badge: 'SYNC'
-  },
-  {
-    title: 'Fits Your Existing Stack',
-    description: 'Use Speke with the tools your team already runs on, including Microsoft Teams and shared docs.',
-    badge: 'STACK'
-  },
-  {
-    title: 'Private by Organization',
-    description: 'Each company gets an isolated workspace with clear member boundaries and role-aware access.',
-    badge: 'PRIVACY'
-  },
-  {
-    title: 'Built for Productive Remote Teams',
-    description: 'Keep communication fast, focused, and searchable across functions without adding communication debt.',
-    badge: 'FLOW'
-  }
-];
-
-const workflow = [
-  {
-    title: 'Share updates where everyone can find them',
-    detail: 'Teams post progress, plans, and decisions in channels that stay organized and searchable.'
-  },
-  {
-    title: 'Talk live when context is blocking progress',
-    detail: 'Start voice instantly with the right people instead of waiting for another scheduled meeting slot.'
-  },
-  {
-    title: 'Close the loop in writing',
-    detail: 'Record outcomes back in channel so the whole team stays aligned across time zones.'
-  }
-];
 ---
 
-<section id="features" class="section">
-  <div class="shell">
-    <div class="section-heading reveal">
-      <p class="eyebrow">Built for modern remote work</p>
-      <h2>One communication layer for teams that need shared knowledge and fast decisions.</h2>
-      <p>
-        Speke helps remote teams communicate in a tighter loop: write for clarity, speak for speed, and keep everything visible in one private workspace.
-      </p>
-      <a
-        href="#waitlist"
-        class="button button-secondary section-cta"
-        data-track-cta
-        data-cta-text="Join Waitlist"
-        data-cta-location="features"
-        data-cta-url="#waitlist"
-      >
-        Join the Waitlist
-      </a>
-    </div>
+<div id="features">
 
-    <div class="feature-grid">
-      {features.map((feature) => (
-        <article class="feature-card reveal">
-          <p class="feature-badge">{feature.badge}</p>
-          <h3>{feature.title}</h3>
-          <p>{feature.description}</p>
-        </article>
-      ))}
-    </div>
-
-    <div class="workflow reveal" aria-label="How teams work in Speke">
-      <h3>How teams use Speke day to day</h3>
-      <ol>
-        {workflow.map((step) => (
-          <li>
-            <p>{step.title}</p>
-            <span>{step.detail}</span>
-          </li>
-        ))}
-      </ol>
-    </div>
-
-    <div class="comparison reveal" id="compare">
-      <h3>How Speke improves modern team workflows</h3>
-      <div class="comparison-table-wrapper">
-        <table>
-          <thead>
-            <tr>
-              <th>Day-to-day need</th>
-              <th>Typical modern stack</th>
-              <th>With Speke</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Share project context</td>
-              <td>Scattered across chats, docs, and threads</td>
-              <td>Structured channel history</td>
-            </tr>
-            <tr>
-              <td>Resolve blockers quickly</td>
-              <td>Ping, wait, then schedule a call</td>
-              <td>Instant voice room handoff</td>
-            </tr>
-            <tr>
-              <td>Keep everyone aligned</td>
-              <td>Context split across tools</td>
-              <td>One searchable team layer</td>
-            </tr>
-            <tr>
-              <td>Know who can respond now</td>
-              <td>Manual status checking</td>
-              <td>Live presence and speaking signals</td>
-            </tr>
-            <tr>
-              <td>Protect workspace boundaries</td>
-              <td>Inconsistent controls by tool</td>
-              <td>Organization-level isolation</td>
-            </tr>
-          </tbody>
-        </table>
+  <!-- ── 1 · Voice Channels ── -->
+  <section class="feature-section bg-dark">
+    <div class="shell">
+      <div class="feature-row">
+        <div class="feature-content reveal">
+          <div class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="18" y="6" width="12" height="20" rx="6" />
+              <path d="M12 22v2a12 12 0 0024 0v-2" />
+              <line x1="24" y1="36" x2="24" y2="42" />
+              <line x1="18" y1="42" x2="30" y2="42" />
+            </svg>
+          </div>
+          <h2>Voice Channels</h2>
+          <p>
+            Your team is always one click away. Persistent voice channels mean
+            no scheduling, no meeting links. The conversation is already
+            open — just join.
+          </p>
+        </div>
+        <div class="feature-media reveal reveal-d2">
+          <div class="media-placeholder" data-slot="feature-voice-screenshot">
+            <span>[ Feature Screenshot: Voice Channels ]</span>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <!-- ── 2 · Live Presence ── -->
+  <section class="feature-section bg-mid">
+    <div class="shell">
+      <div class="feature-row feature-row-reversed">
+        <div class="feature-content reveal">
+          <div class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+              <circle cx="24" cy="24" r="5" fill="currentColor" stroke="none" />
+              <circle cx="24" cy="24" r="12" opacity="0.5" />
+              <circle cx="24" cy="24" r="19" stroke-width="1.6" opacity="0.22" />
+            </svg>
+          </div>
+          <h2>Live Presence</h2>
+          <p>
+            Know who's available right now. Speke shows who's online, who's
+            focused, who's mid-call — without the passive-aggressive green dot.
+          </p>
+        </div>
+        <div class="feature-media reveal reveal-d2">
+          <div class="media-placeholder" data-slot="feature-presence-screenshot">
+            <span>[ Feature Screenshot: Live Presence ]</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 3 · Screen Sharing ── -->
+  <section class="feature-section bg-dark">
+    <div class="shell">
+      <div class="feature-row">
+        <div class="feature-content reveal">
+          <div class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="4" y="6" width="40" height="28" rx="3" />
+              <line x1="16" y1="38" x2="32" y2="38" />
+              <path d="M24 16v10" />
+              <path d="M20 20l4-4 4 4" />
+            </svg>
+          </div>
+          <h2>Screen Sharing</h2>
+          <p>
+            Share what you're seeing, instantly. Multiple people can share
+            simultaneously. No host controls, no "can you see my screen?" — it
+            just works.
+          </p>
+        </div>
+        <div class="feature-media reveal reveal-d2">
+          <div class="media-placeholder" data-slot="feature-screenshare-screenshot">
+            <span>[ Feature Screenshot: Screen Sharing ]</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 4 · Channels & Threads ── -->
+  <section class="feature-section bg-mid">
+    <div class="shell">
+      <div class="feature-row feature-row-reversed">
+        <div class="feature-content reveal">
+          <div class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 10a2 2 0 012-2h32a2 2 0 012 2v20a2 2 0 01-2 2H14l-8 6V10z" />
+              <path d="M20 14l-2 16M30 14l-2 16" />
+              <path d="M15 20h18M14 26h18" />
+            </svg>
+          </div>
+          <h2>Channels &amp; Threads</h2>
+          <p>
+            Organized channels for every project and topic. Threaded replies
+            that don't get lost. A searchable history your whole team can find.
+          </p>
+        </div>
+        <div class="feature-media reveal reveal-d2">
+          <div class="media-placeholder" data-slot="feature-channels-screenshot">
+            <span>[ Feature Screenshot: Channels & Threads ]</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 5 · Desktop App ── -->
+  <section class="feature-section bg-dark">
+    <div class="shell">
+      <div class="feature-row">
+        <div class="feature-content reveal">
+          <div class="feature-icon" aria-hidden="true">
+            <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="6" y="6" width="36" height="26" rx="2.5" />
+              <line x1="6" y1="14" x2="42" y2="14" stroke-width="1.4" opacity="0.35" />
+              <circle cx="11" cy="10" r="1.4" fill="currentColor" stroke="none" opacity="0.45" />
+              <circle cx="16" cy="10" r="1.4" fill="currentColor" stroke="none" opacity="0.45" />
+              <circle cx="21" cy="10" r="1.4" fill="currentColor" stroke="none" opacity="0.45" />
+              <path d="M2 36h44" />
+              <path d="M18 32l-2 4" />
+              <path d="M30 32l2 4" />
+            </svg>
+          </div>
+          <h2>Desktop App</h2>
+          <p>
+            Speke lives in your dock. Native apps for macOS, Windows, and
+            Linux. Always running, always ready — not buried in a browser tab.
+          </p>
+        </div>
+        <div class="feature-media reveal reveal-d2">
+          <div class="media-placeholder" data-slot="feature-desktop-screenshot">
+            <span>[ Feature Screenshot: Desktop App ]</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>

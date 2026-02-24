@@ -5,32 +5,44 @@ import { turnstileSiteKey } from '../constants/turnstile';
 <header class="site-header">
   <div class="shell header-inner">
     <a href="/" class="brand-mark" aria-label="Speke home">
-      <img src="/branding/speke-text-logo.png" alt="Speke" class="brand-logo" />
+      <img src="/branding-new/black/full/white_logo_transparent_background.png" alt="Speke" class="brand-logo" />
     </a>
     <nav class="top-nav" aria-label="Primary">
       <a href="#features">Features</a>
-      <a href="#compare">How it fits</a>
-      <a href="#faq">FAQ</a>
+      <a href="#demo">Demo</a>
+      <a href="#download">Download</a>
     </nav>
-    <p class="header-note">Built for modern remote teams</p>
+    <a
+      href="#waitlist"
+      class="button button-primary header-cta"
+      data-track-cta
+      data-cta-text="Get Early Access"
+      data-cta-location="header"
+      data-cta-url="#waitlist"
+    >
+      Get Early Access
+    </a>
   </div>
 </header>
 
 <section class="hero" id="top">
+  <div class="hero-noise" aria-hidden="true"></div>
   <div class="shell hero-grid">
-    <div class="hero-copy reveal">
-      <p class="eyebrow">For teams already using Microsoft Teams, Slack, and docs</p>
-      <h1>
-        Keep work moving with shared context and instant voice.
+    <div class="hero-copy">
+      <p class="eyebrow reveal">The virtual office for remote teams</p>
+      <h1 class="reveal reveal-d1">
+        Stop scheduling.<span class="text-accent">Just talk.</span>
       </h1>
-      <p class="hero-lead">
-        Speke gives remote teams one place to share knowledge, speak up quickly, and stay in sync across projects without adding more meeting overhead.
+      <p class="hero-lead reveal reveal-d2">
+        Persistent voice channels, live presence, and instant screen sharing.
+        Your team is always one click away — no meeting links, no calendar invites.
       </p>
-      <form class="hero-waitlist" data-waitlist-form data-waitlist-source="hero">
+
+      <form class="hero-waitlist reveal reveal-d3" data-waitlist-form data-waitlist-source="hero">
         <input
           type="email"
           name="email"
-          placeholder="Work email"
+          placeholder="Your work email"
           required
           autocomplete="email"
           aria-label="Work email"
@@ -41,11 +53,11 @@ import { turnstileSiteKey } from '../constants/turnstile';
           type="submit"
           class="button button-primary"
           data-track-cta
-          data-cta-text="Join Waitlist"
+          data-cta-text="Get Early Access"
           data-cta-location="hero"
           data-cta-url="#waitlist"
         >
-          Join Waitlist
+          Get Early Access
         </button>
         <div class="turnstile-widget">
           <div
@@ -57,45 +69,17 @@ import { turnstileSiteKey } from '../constants/turnstile';
         </div>
       </form>
       <p class="waitlist-message hero-waitlist-message" aria-live="polite" data-waitlist-message></p>
-      <p class="hero-meta">Deploy Speke alongside your existing collaboration stack, including Microsoft Teams.</p>
-      <ul class="trust-chips" aria-label="Key capabilities">
-        <li>Knowledge that stays searchable</li>
-        <li>Voice rooms for quick alignment</li>
-        <li>Live presence and speaking status</li>
-        <li>Private, role-based workspaces</li>
-      </ul>
+
+      <div class="trust-indicators reveal reveal-d4">
+        <span><span class="trust-dot" aria-hidden="true"></span> Free during beta</span>
+        <span><span class="trust-dot" aria-hidden="true"></span> No credit card required</span>
+      </div>
     </div>
 
-    <aside class="workspace-preview reveal" aria-label="Speke interface preview">
-      <p class="preview-title">Workspace Snapshot</p>
-      <div class="preview-window">
-        <div class="preview-sidebar">
-          <p class="preview-label">Channels</p>
-          <ul>
-            <li># product-knowledge</li>
-            <li># launch-plan</li>
-            <li># customer-feedback</li>
-          </ul>
-          <p class="preview-label">Voice Rooms</p>
-          <ul>
-            <li>Daily Sync</li>
-            <li>Design Review</li>
-          </ul>
-        </div>
-        <div class="preview-main">
-          <p class="preview-meta">Now active in Daily Sync</p>
-          <h2>Share it in chat. Resolve it in voice.</h2>
-          <div class="participants">
-            <span class="participant in-call">AC</span>
-            <span class="participant in-call">MJ</span>
-            <span class="participant">KP</span>
-            <span class="participant">TL</span>
-          </div>
-          <p class="preview-note">
-            Teams post updates once, jump into quick voice when needed, and keep decisions visible for everyone.
-          </p>
-        </div>
+    <div class="hero-media reveal reveal-d2">
+      <div class="media-placeholder" data-slot="hero-demo-video" aria-label="Hero demo video placeholder">
+        <span>[ Hero Demo Video ]</span>
       </div>
-    </aside>
+    </div>
   </div>
 </section>
