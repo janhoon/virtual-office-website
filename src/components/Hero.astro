@@ -1,11 +1,14 @@
 ---
 import { turnstileSiteKey } from '../constants/turnstile';
+import brandIcon from '../../branding/customcolor/icon/customcolor_icon_customcolor_background.png';
+import brandWordmark from '../../branding/customcolor/text/customcolor_textlogo_customcolor_background.png';
 ---
 
 <header class="site-header">
   <div class="shell header-inner">
     <a href="/" class="brand-mark" aria-label="Speke home">
-      <img src="/branding-new/black/full/white_logo_transparent_background.png" alt="Speke" class="brand-logo" />
+      <img src={brandIcon.src} alt="" aria-hidden="true" class="brand-icon" width="120" height="90" loading="eager" decoding="async" />
+      <img src={brandWordmark.src} alt="Speke" class="brand-wordmark" width="1600" height="900" loading="eager" decoding="async" />
     </a>
     <nav class="top-nav" aria-label="Primary">
       <a href="#features">Features</a>
