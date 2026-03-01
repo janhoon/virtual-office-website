@@ -20,8 +20,8 @@
   --radius-xl: 1.25rem;
   --radius-lg: 0.9rem;
   --radius-sm: 0.55rem;
-  --glow-amber: 0 0 60px rgba(245, 158, 11, 0.15), 0 0 120px rgba(245, 158, 11, 0.08);
-  --glow-border: 1px solid rgba(245, 158, 11, 0.3);
+  --glow-amber: 0 0 40px rgba(234, 150, 15, 0.10), 0 0 80px rgba(234, 150, 15, 0.05);
+  --glow-border: 1px solid rgba(234, 150, 15, 0.2);
 }
 
 /* ─── Reset & Base ─── */
@@ -51,7 +51,7 @@ a {
 
 h1, h2, h3 {
   font-family: 'Quicksand', sans-serif;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -0.025em;
 }
 
@@ -119,7 +119,7 @@ code, .mono {
 }
 
 .footer-brand .brand-logo {
-  height: 1.3rem;
+  height: 2rem;
 }
 
 .top-nav {
@@ -298,7 +298,7 @@ code, .mono {
   height: 130%;
   top: -15%;
   left: -15%;
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.10) 0%, transparent 65%);
+  background: radial-gradient(circle, rgba(234, 150, 15, 0.06) 0%, transparent 65%);
   pointer-events: none;
   z-index: -1;
 }
@@ -307,9 +307,9 @@ code, .mono {
 .media-placeholder {
   aspect-ratio: 16 / 9;
   width: 100%;
-  border: 2px dashed rgba(245, 158, 11, 0.25);
+  border: 2px dashed rgba(234, 150, 15, 0.3);
   border-radius: var(--radius-xl);
-  background: rgba(240, 242, 248, 0.5);
+  background: rgba(255, 255, 255, 0.75);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -322,8 +322,8 @@ code, .mono {
 }
 
 .media-placeholder:hover {
-  box-shadow: 0 0 80px rgba(245, 158, 11, 0.22), 0 0 160px rgba(245, 158, 11, 0.10);
-  border-color: rgba(245, 158, 11, 0.4);
+  box-shadow: 0 0 60px rgba(234, 150, 15, 0.12), 0 0 120px rgba(234, 150, 15, 0.06);
+  border-color: rgba(234, 150, 15, 0.35);
 }
 
 /* ─── Feature Sections ─── */
